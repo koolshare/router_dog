@@ -45,25 +45,25 @@ start_routerdog() {
 		sync_ntp
 	fi
 
-	# 关闭router_dog进程
-	if [ -n "$(pidof router_dog)" ];then
+	# 关闭routerdog进程
+	if [ -n "$(pidof routerdog)" ];then
 		echo_date "关闭当前路由狗进程..."
-		killall router_dog >/dev/null 2>&1
+		killall routerdog >/dev/null 2>&1
 	fi
 
-	# 开启router_dog
+	# 开启routerdog
 	if [ "$routerdog_enable" == "1" ]; then
 		echo_date "启动路由狗主程序..."
 		export GOGC=40
 		cd /koolshare/bin
-		./router_dog >/dev/null 2>&1 &
-		#start-stop-daemon -S -q -b -m -p /tmp/var/sign.pid -x router_dog
+		./routerdog >/dev/null 2>&1 &
+		#start-stop-daemon -S -q -b -m -p /tmp/var/sign.pid -x routerdog
 		sleep 1
 		local SDPID
 		local i=10
 		until [ -n "$SDPID" ]; do
 			i=$(($i - 1))
-			SDPID=$(pidof router_dog)
+			SDPID=$(pidof routerdog)
 			if [ "$i" -lt 1 ]; then
 				echo_date "路由狗进程启动失败！"
 				echo_date "可能是内存不足造成的，建议使用虚拟内存后重试！"
@@ -94,10 +94,10 @@ close_in_five() {
 	exit
 }
 stop() {
-	# 关闭router_dog进程
-	if [ -n "$(pidof router_dog)" ];then
-		echo_date "停止路由狗主进程，pid：$(pidof router_dog)"
-		killall router_dog >/dev/null 2>&1
+	# 关闭routerdog进程
+	if [ -n "$(pidof routerdog)" ];then
+		echo_date "停止路由狗主进程，pid：$(pidof routerdog)"
+		killall routerdog >/dev/null 2>&1
 	fi
 
 	if [ -L "/koolshare/init.d/S95routerdog.sh" ];then

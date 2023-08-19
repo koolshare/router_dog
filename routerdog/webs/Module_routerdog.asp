@@ -86,6 +86,7 @@
             get_status();
             get_dbus_data();
             register_event();
+            setRouterdogAddr();
         }
         function register_event() {
             $(".popup_bar_bg_ks").click(
@@ -248,6 +249,9 @@
             tabtitle[tabtitle.length - 1] = new Array("", "路由狗");
             tablink[tablink.length - 1] = new Array("", "Module_routerdog.asp");
         }
+        function setRouterdogAddr(){
+            E("routerdog_ip").innerHTML = location.origin + ":9932";
+        }
     </script>
 </head>
 
@@ -290,7 +294,7 @@
                                 <tr>
                                     <td bgcolor="#4D595D" colspan="3" valign="top">
                                         <div>&nbsp;</div>
-                                        <div class="formfonttitle">路由狗（Router_Dog）<lable id="routerdog_version">
+                                        <div class="formfonttitle">路由狗（RouterDog）<lable id="routerdog_version">
                                                 <lable>
                                         </div>
                                         <div style="float:right; width:15px; height:25px;margin-top:-20px">
@@ -302,8 +306,8 @@
                                         </div>
                                         <div style="margin:10px 0 10px 5px;" class="splitLine"></div>
                                         <div class="SimpleNote">
-                                            <li>路由狗（Router_Dog）支持远程管理路由器固件的各项功能</li>
-                                            <!-- <li>Router_Dog 支持 安卓和路由器平台：<a
+                                            <li>路由狗（RouterDog）支持远程管理路由器固件的各项功能</li>
+                                            <!-- <li>RouterDog 支持 安卓和路由器平台：<a
                                                     href="https://koolshare.cn/thread-192376-1-1.html" target="_blank"
                                                     style="color: #FC0;">教程简介</a>
                                             </li> -->
@@ -312,7 +316,7 @@
                                                     style="color: #FC0;">QQ群交流</a>
                                             </li>
                                             <li>
-                                                <a href="https://share.weiyun.com/u4RXyySx" target="_blank"
+                                                <a href="https://fw.koolcenter.com/binary/Carseason/routerdog/" target="_blank"
                                                     style="color: #FC0;">APP下载</a>
                                             </li>
 
@@ -356,6 +360,10 @@
                                                 <tr>
                                                     <th>运行状态</th>
                                                     <td><span id="routerdog_status"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>APP访问地址</th>
+                                                    <td><span id="routerdog_ip"></span></td>
                                                 </tr>
                                                 <!--<tr id="routerdog_console" style="display:none;">
 												<th>控制台</th>
